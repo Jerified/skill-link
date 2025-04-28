@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -119,6 +118,8 @@ export function CreatePostForm({ onSuccess }: CreatePostFormProps) {
       const fileName = `${user.id}-${Date.now()}.${fileExt}`;
       const filePath = `${fileName}`;
 
+      // Create upload progress observer
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
       // Try upload
       const { error: uploadError } = await supabase.storage
@@ -347,7 +348,8 @@ export function CreatePostForm({ onSuccess }: CreatePostFormProps) {
             <FormField
               control={form.control}
               name="image_url"
-              render={({ field: { onChange, ...field } }) => (
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              render={() => (
                 <FormItem>
                   <FormLabel className="text-sm font-medium">
                     Featured Image (Optional)
@@ -360,7 +362,6 @@ export function CreatePostForm({ onSuccess }: CreatePostFormProps) {
                       className="hidden"
                       id="post-image"
                       disabled={isUploading}
-                      {...field}
                     />
                     
                     {!imageUrl ? (
@@ -419,7 +420,8 @@ export function CreatePostForm({ onSuccess }: CreatePostFormProps) {
                   </div>
                   <FormMessage />
                 </FormItem>
-              )}            />
+              )}
+            />
 
             <div className="pt-2">
               <Button
