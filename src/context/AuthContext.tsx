@@ -56,14 +56,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             access_type: 'offline',
             prompt: 'consent',
           },
+          skipBrowserRedirect: false,
         },
       });
+      
       if (error) throw error;
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.message || 'Failed to sign in with Google');
     }
   };
-
   const signUpWithEmail = async (email: string, password: string, name: string) => {
     try {
       // 1. Create auth user
